@@ -26,13 +26,15 @@ public class GerenciadorDeAmizade {
         amizadeDao.remover(a);
     }
     
-    public void recusaAmizade(Amizade a) throws SQLException{
+    public void recusaAmizade(String emailUsuario, String emailSolicitante) throws SQLException{
+        Amizade a = pesquisarAmizade(emailSolicitante, emailUsuario);
         removerAmizade(a);
     }
     
-    public void aceitaAmizade(Amizade a) throws SQLException{
+    public void aceitaAmizade(String emailUsuario, String emailSolicitante) throws SQLException{
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
         AmizadeDaoIF amizadeDao = fabrica.criaAmizadeDao();
+        Amizade a = amizadeDao.pesquisar(emailSolicitante, emailUsuario);
         amizadeDao.aceita(a);
     }
     

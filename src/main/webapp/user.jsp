@@ -62,9 +62,9 @@
                     <h3>Solicitação aguardando sua resposta!</h3><br>
                     <p>Aceite ou recuse.</p>
                     <br><br>
-                    <form action="ControleAceitaSolicitacaoPeloPerfilVisitante" method="post">
-                        <button class="botaoPequeno" name="resposta" value="true">Aceitar</button>
-                        <button class="botaoPequeno" name="resposta" value="false">Recusar</button>
+                    <form action="AceitaSolicitacaoPeloPerfilVisitante" method="post">
+                        <button class="btn-success" name="resposta" title="Aceitar" value="true"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                        <button class="btn-danger" name="resposta"  title="Recusar" value="false"><span class="glyphicon glyphicon-thumbs-down"></span></button>
                     </form>
                 </c:if>
             </div>

@@ -138,6 +138,14 @@
         <servlet-name>EnviarConviteAmizade</servlet-name>
         <url-pattern>/EnviarConviteAmizade</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AceitaSolicitacaoPeloPerfilVisitante</servlet-name>
+        <servlet-class>br.edu.ifpb.ads.psd.projeto.servlets.AceitaSolicitacaoPeloPerfilVisitante</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AceitaSolicitacaoPeloPerfilVisitante</servlet-name>
+        <url-pattern>/AceitaSolicitacaoPeloPerfilVisitante</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>2</session-timeout>
     </session-config>
