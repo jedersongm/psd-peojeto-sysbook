@@ -36,12 +36,12 @@ public class ControleCadastroGrupo extends HttpServlet {
             
             grupoGer.adicionarGrupo(emailUsuario, nomeDoGrupo, descricao);
             grupoGer.adicionaRelacaoAdmin(emailUsuario, grupoGer.retornaMaximo());
-            
+                        
             List<Grupo> grupos = grupoGer.retornaGruposDoUsuario(emailUsuario);
             if (!grupos.isEmpty()) {
                 req.getSession().setAttribute("grupos", grupos);
             }else{
-                req.getSession().setAttribute("grupos", null);
+                req.getSession().setAttribute("grupos",null);
             }
             
             req.getRequestDispatcher("visualizaGrupos.jsp").forward(req, resp);

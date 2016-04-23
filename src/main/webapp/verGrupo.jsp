@@ -8,10 +8,10 @@
                 <a href="logado.jsp"><h1 class="text-center textoPreto">Social Movies</h1></a>
                 <br>    
                 <ul class="nav nav-tabs navbar-static-top" id="menuNav">
-                    <li class="active"><a data-toggle="tab" href="#topicos">Grupo</a></li>
-                    <li><a data-toggle="tab" href="#participantes">Usuários</a></li>
+                    <li class="active"><a data-toggle="tab" href="#topicos">TÃ³picos</a></li>
+                    <li><a data-toggle="tab" href="#participantes">UsuÃ¡rios</a></li>
                     <c:if test="${participa == true}">
-                        <li><a data-toggle="tab" href="#criar">Criar tópico</a></li>
+                        <li><a data-toggle="tab" href="#criar">Criar tÃ³pico</a></li>
                     </c:if>
                         <c:if test="${participa == false}">
                         <li><a data-toggle="tab" href="#participar">Participar</a></li>
@@ -29,7 +29,7 @@
                             <p>${grupoSelecionado.descricao}</p>
                             <br>
                         </section>
-                        <c:if test="${topicos != null}"><h3>Tópicos</h3></c:if>
+                        <c:if test="${topicos != null}"><h3>TÃ³picos</h3></c:if>
                         <br><br>
                         <c:if test="${participa == true}">
                             <div class="row modal-header">
@@ -41,13 +41,13 @@
                         </div>
                         </c:if>
                         <c:if test="${participa == false}">
-                            <h4>Só para usuarios que participam do grupo</h4>
+                            <h4>SÃ³ para usuarios que participam do grupo</h4>
                             <h5><a data-toggle="tab" href="#participar">Clique aqui</a> e venha participar</h5>
                         </c:if>
                     </div>
                     <div id="participantes" class="tab-pane fade text-center">
                         <div class="margin-top table-responsive modal-header">
-                            <h3>Usuários do grupo</h3>
+                            <h3>UsuÃ¡rios do grupo</h3>
                             <br><br><br>
                             <div class="row">
                                 <c:forEach items="${usuariosDoGrupo}" var="us">
@@ -57,7 +57,7 @@
                                             <h4 class="text-capitalize"><a href="ControlePerfilVisitante?idDoUsuario=${us.id}">${us.apelido}</a></h4>
                                             </c:if>
                                             <c:if test="${us.id == user.id}"> 
-                                            <h4 class="text-capitalize"><a href="editarPerfil.jsp">Você</a></h4>
+                                            <h4 class="text-capitalize"><a href="editarPerfil.jsp">VocÃª</a></h4>
                                         </c:if>
                                     </div>
                                 </c:forEach>
@@ -67,11 +67,11 @@
                     <div id="criar" class="tab-pane fade text-center">
                         <div class="text-center margin-top table-responsive modal-header modal-dialog">
                             <br>
-                            <h3>Criar novo tópico</h3>
+                            <h3>Criar novo tÃ³pico</h3>
                             <br>
                             <div class="form-group">
                                 <form action="ControleCriarTopico" method="post">
-                                    <input class="botaoMedio margin-top" name="nomeDoTopico" type="text" placeholder="Nome do tópico">
+                                    <input class="botaoMedio margin-top" name="nomeDoTopico" type="text" placeholder="Nome do tÃ³pico">
                                     <input class="botaoMedio margin-top" name="nomeDoFilme" type="text" placeholder="Nome do Filme" list="listaDeFilmes">
                                     <datalist id="listaDeFilmes">
                                         <c:forEach items="${nomeDosFilmes}" var="a">
@@ -86,7 +86,7 @@
                     <c:if test="${participa == false}">
                         <div id="participar" class="tab-pane text-center fade">
                             <br>
-                            <h3>Clique em participar e faça parte deste grupo!</h3>
+                            <h3>Clique em participar e faÃ§a parte deste grupo!</h3>
                             <div class="form-group modal-header modal-dialog">
                                 <form action="ControleParticiparGrupo" method="post">
                                     <input type="submit" value="Participar" class="botaoPequeno margin-top">
