@@ -2,7 +2,7 @@
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
-<%@attribute name="campo" required="true" type="Entidades.Usuario"  rtexprvalue="true"%>
+<%@attribute name="campo" required="true" type="br.edu.ifpb.ads.psd.projeto.entidades.Usuario"  rtexprvalue="true"%>
 <%@taglib prefix="f" uri="/WEB-INF/bibliotecas.tld" %>
 
 <form action="salvar-informacao" method="post">
@@ -28,11 +28,11 @@
     <br>
     <b>Estado: </b>
     <br>
-    <input type="text" value="${campo.estado}" pattern="[A-ZÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ].*" id="estado" placeholder="Digite seu Estado" class="campo-texto" name="estado">
+    <input type="text" value="${campo.estado}" pattern="[A-Z]{2}" id="estado" placeholder="Digite seu Estado" class="campo-texto" name="estado">
     <br>
     <b>Data de Nascimento: </b>
     <br>
-    <input type="text" value="${campo.data_nascimento}"  id="data_nascimento" name="data_nascimento" placeholder="Digite sua data e nascimento" class="campo-texto">
+    <input type="date" value="${campo.data_nascimento}"  id="data_nascimento" name="data_nascimento" placeholder="Digite sua data e nascimento" class="campo-texto">
     <br>
     <b>Tipo: </b>
     <br>

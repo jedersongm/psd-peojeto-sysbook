@@ -8,7 +8,7 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <h1><strong>Cadastrar Usuário
+                        <h1><strong>Cadastrar Usuï¿½rio
                                 </div>
                                 <div class="row">
                                     <div class="templatemo-one-signin col-md-12">

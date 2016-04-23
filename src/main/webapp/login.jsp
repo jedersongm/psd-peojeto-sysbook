@@ -42,7 +42,7 @@
                         </div>
                         <div class="templatemo-other-signin col-md-6">
                             <label class="margin-bottom-15">
-                                Se você não tem um cadastro, com um click você pode fazer o seu! <a rel="nofollow" href="cadastrarUsuario.jsp">SisLivros</a>. 
+                                Se vocï¿½ nï¿½o tem um cadastro, com um click vocï¿½ pode fazer o seu! <a rel="nofollow" href="cadastrarUsuario.jsp">SisLivros</a>. 
 
                             </label>
                             <a class="btn btn-block btn-social btn-facebook margin-bottom-15">
@@ -60,9 +60,7 @@
 
                         <div class="col-md-12">
                             <div class="mensagem">
-                                <h1>
-                                    <tag1:statusUsuarioSenha/>
-                                </h1>
+                                <tag1:statusUsuarioSenha/>
                             </div>
                             <div class="checkbox">
                                 <label>

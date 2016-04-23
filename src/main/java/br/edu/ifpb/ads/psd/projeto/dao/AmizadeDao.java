@@ -91,6 +91,11 @@ public class AmizadeDao implements AmizadeDaoIF {
     
     @Override
     public void aceita(Amizade amizade) throws SQLException{
+        acceptFriend(amizade);
+        insertNewFriend(amizade);
+    }
+    
+    private void acceptFriend(Amizade amizade) throws SQLException{
         try{
             conexao.abrir();
             String SQL = "UPDATE Amizade SET isAmigo = ? since = ? WHERE emailUsuario = ? AND emailAmigo = ?";
@@ -99,24 +104,33 @@ public class AmizadeDao implements AmizadeDaoIF {
             pstm.setString(2, amizade.getSince());
             pstm.setString(3, amizade.getEmailUsuario());
             pstm.setString(4, amizade.getEmailAmigo());
-            pstm.execute();
-            
-            SQL = "INSERT INTO Amizade(isAmigo, since, emailAmigo, emailUsuario) VALUES (?,?,?,?)";
-            
-            pstm = con.prepareStatement(SQL);
-            pstm.setBoolean(1, true);
-            pstm.setString(2, amizade.getSince());
-            pstm.setString(3, amizade.getEmailUsuario());
-            pstm.setString(4, amizade.getEmailAmigo());
-            pstm.execute();
-            
+            pstm.executeUpdate();          
         }catch(SQLException ex){
-            
+            ex.printStackTrace();
         }finally{
             conexao.liberar();
         }
     }
     
+    private void insertNewFriend(Amizade amizade) throws SQLException{
+        try{
+            conexao.abrir();
+            
+            String sql = "INSERT INTO Amizade(isAmigo, since, emailAmigo, emailUsuario) VALUES (?,?,?,?)";
+            
+            pstm = con.prepareStatement(sql);
+            pstm.setBoolean(1, true);
+            pstm.setString(2, amizade.getSince());
+            pstm.setString(3, amizade.getEmailUsuario());
+            pstm.setString(4, amizade.getEmailAmigo());
+            pstm.executeUpdate();
+            
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            conexao.liberar();
+        }
+    }
     @Override
     public boolean isAmigo(String emailUsuario, String emailAmigo) throws SQLException {
         try{

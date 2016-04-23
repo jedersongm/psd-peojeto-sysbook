@@ -58,8 +58,7 @@ public class EnviarConviteAmizade extends HttpServlet {
          String emailUser = ((Usuario) request.getSession().getAttribute("usuario")).getEmail();
         String emailVisitante = ((Usuario) request.getSession().getAttribute("visitante")).getEmail();
         try {
-            amizadeGer.enviarConviteAmizade(emailUser,emailVisitante);
-            JOptionPane.showMessageDialog(null, "Convite Enviado...");
+            amizadeGer.enviarConviteAmizade(emailUser,emailVisitante);            
         } catch (SQLException | ParseException ex) {
             ex.printStackTrace();
         }
