@@ -34,7 +34,7 @@ public class TornarAdmin extends HttpServlet {
             Usuario u = usuarioGer.getUsuario(id);
             u.setTipo(true);
             usuarioGer.atualizaUsuario(u);
-            request.setAttribute("convidado", u);
+            request.setAttribute("visitante", u);
             dispatcher.forward(request, response);
         } catch (SQLException ex) {
             ex.printStackTrace();
