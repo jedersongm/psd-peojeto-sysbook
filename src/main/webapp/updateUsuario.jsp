@@ -28,7 +28,7 @@
                             <br>
                             
                             <div class="adicionar-foto">
-                                <input type="file" required onchange="readURL(this)" accept="image/*" class="foto" name="foto" value="${sessionScope.usuario.foto}" >
+                                <input type="file" onchange="readURL(this)" accept="image/*" class="foto" name="foto" value="${sessionScope.usuario.foto}" >
                             </div>
                             
                     </div>

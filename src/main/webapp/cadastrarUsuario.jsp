@@ -8,7 +8,7 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <h1><strong>Cadastrar Usu�rio
+                        <h1><strong>Cadastrar Usuário
                                 </div>
                                 <div class="row">
                                     <div class="templatemo-one-signin col-md-12">
@@ -18,7 +18,7 @@
                                         <br>
 
                                         <div class="adicionar-foto">
-                                            <input type="file" required onchange="readURL(this)" accept="image/*" class="foto" name="foto" >
+                                            <input type="file"  onchange="readURL(this)" accept="image/*" class="foto" name="foto" >
                                         </div>
 
                                     </div>
@@ -50,7 +50,7 @@
                                             <div class="templatemo-input-icon-container">
                                                 <i class="fa fa-lock"></i>
 
-                                                <input name="dataNascimento" type = "date" class = "form-control" id = "dataNascimento" placeholder = "Data de nascimento"  required>
+                                                <input name="dataNascimento" type = "text" class = "form-control" id = "dataNascimento" placeholder = "Data de nascimento" pattern="\d{2}/\d{2}/\d{4}" required>
                                             </div>
 
                                         </div>  
@@ -127,11 +127,11 @@
                                 <script src ="js/jQuery.min.js" type="text/javascript"></script>
                                 <script src="js/maskedinput.min.js" type="text/javascript"></script>
                                 <link href="css/configuracao.css" rel="stylesheet" type="text/css">
-                                <!--<script>
+                                <script>
                                                 $(function ($) {
                                                     $("#dataNascimento").mask("99/99/9999", {placeholder: "dd/mm/aaaa"});
                                                 });
-                                </script>-->
+                                </script>
                                 <script>
                                     function atualizafoto() {
                                         var fotoDigitada = document.forms["formCliente"]["clifoto"].value;

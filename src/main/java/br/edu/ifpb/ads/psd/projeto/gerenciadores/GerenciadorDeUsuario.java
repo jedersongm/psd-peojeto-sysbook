@@ -8,6 +8,7 @@ import br.edu.ifpb.ads.psd.projeto.interfaces.UsuarioDaoIF;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class GerenciadorDeUsuario {
     
@@ -22,7 +23,6 @@ public class GerenciadorDeUsuario {
         novoUsuario.setEstado(estado);
         novoUsuario.setDataNascimento(dataNascimento);
         novoUsuario.setFoto(fotoCapa);
-        
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
         UsuarioDaoIF usuDao = fabrica.criaUsuarioDao();
         usuDao.inserir(novoUsuario); 

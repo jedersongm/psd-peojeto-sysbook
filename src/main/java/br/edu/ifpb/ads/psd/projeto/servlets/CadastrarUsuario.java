@@ -55,20 +55,22 @@ public class CadastrarUsuario extends HttpServlet {
                 String nomeImagem = nome;
                 String foto;
                 if (itens.get(0).getString().equals("")) {
-                    foto = "images/usuario.png";
+                    foto = "images/usuario.jpg";
                 } else {
                     new GerenciadorImagem().inserirImagemPerfil(itens.get(0), realPath, nomeImagem);
                     foto = "imagensPerfil/" + nomeImagem + ".jpg";
                 }
                 
-                String dataNascimento = itens.get(3).getString("UTF-8");                
+                String dataNascimento = itens.get(3).getString("UTF-8");
+                
+                
 //                Usuario user = new Usuario();
 //                user = usuarioGer.pesquisarUsuarioEmail(email);
 //                if(user.getEmail() != null){
 //                    request.setAttribute("mensagem", "Email já cadastrado!");
 //                    request.getRequestDispatcher("cadastrarUsuario.jsp").forward(request, response);
 //                }else{
-                    usuarioGer.adicionarUsuario(email, nome, apelido, senha, cidade, estado, foto, converter.stringParaDate(dataNascimento));
+                   usuarioGer.adicionarUsuario(email, nome, apelido, senha, cidade, estado, foto, converter.stringParaDate(dataNascimento));
 //                }
                 
 
