@@ -90,29 +90,32 @@ public class AmizadeDao implements AmizadeDaoIF {
     }
     
     @Override
-    public void aceita(Amizade amizade) throws SQLException{
-        acceptFriend(amizade);
-        insertNewFriend(amizade);
+    public boolean aceita(Amizade amizade) throws SQLException{
+        boolean result = true;
+        result &= acceptFriend(amizade);
+        result &=  insertNewFriend(amizade);
+        return result;
     }
     
-    private void acceptFriend(Amizade amizade) throws SQLException{
+    private boolean acceptFriend(Amizade amizade) throws SQLException{
         try{
             conexao.abrir();
-            String SQL = "UPDATE Amizade SET isAmigo = ? since = ? WHERE emailUsuario = ? AND emailAmigo = ?";
+            String SQL = "UPDATE Amizade SET isAmigo = ?  WHERE emailUsuario = ? AND emailAmigo = ?";
             pstm = con.prepareStatement(SQL);
             pstm.setBoolean(1, true);
-            pstm.setString(2, amizade.getSince());
-            pstm.setString(3, amizade.getEmailUsuario());
-            pstm.setString(4, amizade.getEmailAmigo());
-            pstm.executeUpdate();          
+            //pstm.setString(2, amizade.getSince());
+            pstm.setString(2, amizade.getEmailUsuario());
+            pstm.setString(3, amizade.getEmailAmigo());
+            if(pstm.executeUpdate() > 0) return true;          
         }catch(SQLException ex){
             ex.printStackTrace();
         }finally{
             conexao.liberar();
         }
+        return false;
     }
     
-    private void insertNewFriend(Amizade amizade) throws SQLException{
+    private boolean insertNewFriend(Amizade amizade) throws SQLException{
         try{
             conexao.abrir();
             
@@ -123,13 +126,14 @@ public class AmizadeDao implements AmizadeDaoIF {
             pstm.setString(2, amizade.getSince());
             pstm.setString(3, amizade.getEmailUsuario());
             pstm.setString(4, amizade.getEmailAmigo());
-            pstm.executeUpdate();
+            if(pstm.executeUpdate() > 0) return true; 
             
         }catch(SQLException ex){
             ex.printStackTrace();
         }finally{
             conexao.liberar();
         }
+        return false;
     }
     @Override
     public boolean isAmigo(String emailUsuario, String emailAmigo) throws SQLException {

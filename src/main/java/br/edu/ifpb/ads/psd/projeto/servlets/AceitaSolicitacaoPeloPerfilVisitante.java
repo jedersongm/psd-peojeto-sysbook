@@ -23,39 +23,37 @@ import javax.swing.JOptionPane;
  *
  * @author jederson
  */
-
 public class AceitaSolicitacaoPeloPerfilVisitante extends HttpServlet {
-
+    
     GerenciadorDeAmizade amizadeGer = new GerenciadorDeAmizade();
-
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
     }
-
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        
         boolean resposta = Boolean.parseBoolean(request.getParameter("resposta"));
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         Usuario visitante = (Usuario) request.getSession().getAttribute("visitante");
         
-        try{
-        if(resposta){           
-            amizadeGer.aceitaAmizade(user.getEmail(), visitante.getEmail());            
-        }else{
-            amizadeGer.recusaAmizade(user.getEmail(),visitante.getEmail());           
-        }
-        }catch(SQLException ex){
+        try {
+            if (resposta) {                
+                if (amizadeGer.aceitaAmizade(user.getEmail(), visitante.getEmail())) {
+                    JOptionPane.showMessageDialog(null, "Convite aceito");
+                }                
+            } else {
+                amizadeGer.recusaAmizade(user.getEmail(), visitante.getEmail());                
+            }
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         request.getRequestDispatcher("user.jsp").forward(request, response);
     }
-
     
     @Override
     public String getServletInfo() {

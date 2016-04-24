@@ -1,5 +1,6 @@
 package br.edu.ifpb.ads.psd.projeto.gerenciadores;
 
+import br.edu.ifpb.ads.psd.projeto.converterInformacao.ConverterData;
 import br.edu.ifpb.ads.psd.projeto.entidades.Amizade;
 import br.edu.ifpb.ads.psd.projeto.entidades.Usuario;
 import br.edu.ifpb.ads.psd.projeto.fabricas.DaoFactory;
@@ -31,11 +32,12 @@ public class GerenciadorDeAmizade {
         removerAmizade(a);
     }
     
-    public void aceitaAmizade(String emailUsuario, String emailSolicitante) throws SQLException{
+    public boolean aceitaAmizade(String emailUsuario, String emailSolicitante) throws SQLException{
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
         AmizadeDaoIF amizadeDao = fabrica.criaAmizadeDao();
         Amizade a = amizadeDao.pesquisar(emailSolicitante, emailUsuario);
-        amizadeDao.aceita(a);
+        a.setSince(ConverterData.getDateTime());
+        return amizadeDao.aceita(a);
     }
     
     public Amizade pesquisarAmizade(String emailUsuario, String emailAmigo) throws SQLException{

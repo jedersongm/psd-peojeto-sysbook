@@ -50,7 +50,7 @@
                                             <div class="templatemo-input-icon-container">
                                                 <i class="fa fa-lock"></i>
 
-                                                <input name="dataNascimento" type = "text" class = "form-control" id = "dataNascimento" placeholder = "Data de nascimento" pattern="\d{2}/\d{2}/\d{4}" required>
+                                                <input name="dataNascimento" type = "date" class = "form-control" id = "dataNascimento" placeholder = "Data de nascimento"  required>
                                             </div>
 
                                         </div>  
@@ -80,7 +80,7 @@
                                             <label for="estado" class="control-label">Estado</label>
                                             <div class="templatemo-input-icon-container">
                                                 <i class="fa fa-lock"></i>
-                                                <input name="estado" type = "text" class = "form-control" id = "estado" placeholder = "Estado"  required>
+                                                <input name="estado" type = "text" class = "form-control" id = "estado" placeholder = "Estado" pattern="[A-Z]{2}" title="Ex. PB" required>
                                             </div>
                                         </div>    
 
@@ -93,8 +93,8 @@
                                             </div>
                                         </div>                             
                                     </div>
-                                        
-                                    <div class="form-group">
+
+                                    <!--<div class="form-group">
                                         <br>
                                         <br>
                                         <div class="mensagem">
@@ -102,15 +102,14 @@
                                                 <tag1:statusUsuarioSenha/>
                                             </h1>
                                         </div>
-                                        <br>
-                                        <br>
+                                    </div>-->
 
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <input type="submit" class="botao">
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="submit" class="botao">
                                         </div>
                                     </div>
+
 
                                 </div>
 
@@ -128,11 +127,11 @@
                                 <script src ="js/jQuery.min.js" type="text/javascript"></script>
                                 <script src="js/maskedinput.min.js" type="text/javascript"></script>
                                 <link href="css/configuracao.css" rel="stylesheet" type="text/css">
-                                <script>
+                                <!--<script>
                                                 $(function ($) {
                                                     $("#dataNascimento").mask("99/99/9999", {placeholder: "dd/mm/aaaa"});
                                                 });
-                                </script>
+                                </script>-->
                                 <script>
                                     function atualizafoto() {
                                         var fotoDigitada = document.forms["formCliente"]["clifoto"].value;

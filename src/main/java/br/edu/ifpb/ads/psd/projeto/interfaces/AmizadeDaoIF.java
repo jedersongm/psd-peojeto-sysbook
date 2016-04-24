@@ -12,7 +12,7 @@ public interface AmizadeDaoIF {
     
     public void atualizar(Amizade a)throws SQLException;
     
-    public void aceita(Amizade amizade) throws SQLException;
+    public boolean aceita(Amizade amizade) throws SQLException;
     
     public boolean isAmigo(String emailUsuario, String emailAmigo) throws SQLException;
     
