@@ -81,7 +81,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#"><span class="glyphicon glyphicon-flag"></span> Ver Solicitações de Amizade</a>
+                                        <a href="ExibirSolicitacoesDeAmizade"><span class="glyphicon glyphicon-flag"></span> Ver Solicitações de Amizade</a>
                                     </li>
                                     <li>
                                         <a href="updateUsuario.jsp"><span class="glyphicon glyphicon-cog"></span> Editar Perfil</a>

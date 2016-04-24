@@ -253,7 +253,7 @@ public class AmizadeDao implements AmizadeDaoIF {
         try{
             conexao.abrir();
             
-            String sql = "SELECT emailUsuario FROM Amizade WHERE emailAmigo = ? AND isAmigo ? ORDER BY since DESC";
+            String sql = "SELECT * FROM Amizade WHERE emailAmigo = ? AND isAmigo ? ORDER BY since DESC";
             pstm = con.prepareStatement(sql);
             pstm.setString(1, email);
             pstm.setBoolean(2, false);

@@ -13,6 +13,7 @@ public class Livro {
     private String fotoCapa;
     private String tema;
     private String autores;
+    private String[] generos;
 
     public Livro() {
     }
