@@ -72,7 +72,7 @@
 
                             <c:if test="${sessionScope.usuario != null}">                                
                             <li>
-                                <a href="#"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>Amigos</a>
+                                <a href="ListarAmigos"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>Amigos</a>
                             </li>
                             <li>
                                 <a href="ControleVerGrupo"><span class="glyphicon glyphicon-globe"></span> Grupos</a>

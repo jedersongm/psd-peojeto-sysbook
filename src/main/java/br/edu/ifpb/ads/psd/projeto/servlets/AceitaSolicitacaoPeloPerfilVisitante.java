@@ -40,14 +40,14 @@ public class AceitaSolicitacaoPeloPerfilVisitante extends HttpServlet {
         boolean resposta = Boolean.parseBoolean(request.getParameter("resposta"));
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         Usuario visitante = (Usuario) request.getSession().getAttribute("visitante");
-        
+       
         try {
             if (resposta) {                
                 if (amizadeGer.aceitaAmizade(user.getEmail(), visitante.getEmail())) {
-                    JOptionPane.showMessageDialog(null, "Convite aceito");
+                    request.getSession().setAttribute("status", "amigo");
                 }                
             } else {
-                amizadeGer.recusaAmizade(user.getEmail(), visitante.getEmail());                
+                amizadeGer.recusaAmizade(user.getEmail(), visitante.getEmail());                               
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

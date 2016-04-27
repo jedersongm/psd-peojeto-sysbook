@@ -216,12 +216,11 @@ public class AmizadeDao implements AmizadeDaoIF {
         try {
             conexao.abrir();
 
-            String SQL = "SELECT * FROM Amizade WHERE emailUsuario = ? OR emailAmigo = ? AND isAmigo = ?";
+            String SQL = "SELECT * FROM Amizade WHERE emailUsuario = ? AND isAmigo = ?";
 
             pstm = con.prepareStatement(SQL);
             pstm.setString(1, email);
-            pstm.setString(2, email);
-            pstm.setBoolean(3, true);
+            pstm.setBoolean(2, true);
 
             ResultSet result = pstm.executeQuery();
 

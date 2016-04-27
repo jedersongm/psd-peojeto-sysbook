@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body class = templatemo-bg-image-2>
+<body class = "tab-content">
        
         <div class="container">
             
@@ -38,7 +38,9 @@
                 <div id="amizade" class="col-md-5">
                     <h2>Amizade</h2>
                     <c:if test="${status == 'amigo'}">
-                        <p>Vocês já são amigos.</p>
+                        <div class="alert alert-info">
+                            Vocês já são amigos
+                        </div>
                     </c:if>
                     <c:if test="${status == 'pendente'}">
                         <p>Solicitação de amizade enviada.</p>
