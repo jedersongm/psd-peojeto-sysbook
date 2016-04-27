@@ -55,7 +55,7 @@ public class AutoresDao implements AutoresDaoIF{
             pstm.setString(1, autor.getNomeAutor());
 
             pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Excluido com sucesso");
+            
         } finally {
             conexao.liberar();
         }
