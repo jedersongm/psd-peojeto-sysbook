@@ -7,11 +7,12 @@ package br.edu.ifpb.ads.psd.projeto.dao;
 
 import br.edu.ifpb.ads.psd.projeto.conexao.ClasseConexao;
 import br.edu.ifpb.ads.psd.projeto.conexao.ConnectionFactory;
-import br.edu.ifpb.ads.psd.projeto.entidades.Livro;
 import br.edu.ifpb.ads.psd.projeto.interfaces.RecomendaLivroDaoIF;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,12 +58,42 @@ public class RecomendaLivroDao implements RecomendaLivroDaoIF{
 
     @Override
     public void responder(String email, String isbn) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            conexao.abrir();
+            
+            String sql = "UPDATE recomendalivro SET visualized = true WHERE  emailDestino = '"+email+"' AND isbnLivro = '"+isbn+"'";
+            
+            pstm = con.prepareStatement(sql);
+            pstm.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            conexao.liberar();
+        }
     }
 
     @Override
-    public List<Livro> listarLivrosRecomendados(String email) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<String> listarLivrosRecomendados(String email) throws SQLException {
+        try{
+            conexao.abrir();
+            
+            String sql = "SELECT isbnLivro FROM recomendalivro WHERE emailDestino =' "+email+"' AND visualized = false";
+            
+            pstm = con.prepareStatement(sql);
+            
+            List<String> livros = new ArrayList<>();
+            
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                livros.add(rs.getString("isbnLivro"));
+            }
+            return livros.isEmpty()? null : livros;
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            conexao.liberar();
+        }
+        return null;
     }
 
     

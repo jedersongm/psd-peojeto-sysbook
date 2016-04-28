@@ -5,7 +5,6 @@
  */
 package br.edu.ifpb.ads.psd.projeto.interfaces;
 
-import br.edu.ifpb.ads.psd.projeto.entidades.Livro;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,5 +18,5 @@ public interface RecomendaLivroDaoIF {
     
     public void responder(String email,String isbn) throws SQLException;
     
-    public List<Livro> listarLivrosRecomendados(String email) throws SQLException;
+    public List<String> listarLivrosRecomendados(String email) throws SQLException;
 }

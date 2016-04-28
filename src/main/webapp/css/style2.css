@@ -67,3 +67,10 @@ hr{
     margin: 0;
     border-color: buttonface;
 }
+
+#bottom-float-top{
+    display:scroll;
+    position:fixed;
+    bottom:2px;
+    right:2px;
+}
