@@ -40,25 +40,23 @@
 
                                     <div class="form-group">
                                         <div class="col-md-6">		          	
-                                            <label for="tirulo" class="control-label">Título</label>
+                                            <label for="titulo" class="control-label">Tï¿½tulo</label>
                                             <div class="templatemo-input-icon-container">
                                                 <i class="fa fa-user"></i>
-                                                <input name="titulo" type = "text"  class="form-control" id="titulo" placeholder = "título" required>
+                                                <input name="titulo" type = "text"  class="form-control" id="titulo" placeholder = "tï¿½tulo" required>
                                             </div>		            		            		            
                                         </div> 
                                         <div class="col-md-6">	
 
 
-                                            <label for="anoPublicacao" class="control-label">Ano de Publicação</label>
+                                            <label for="anoPublicacao" class="control-label">Ano de Publicaï¿½ï¿½o</label>
                                             <div class="templatemo-input-icon-container">
                                                 <i class="fa fa-lock"></i>
-
-                                                <input name="anoPublicacao" type = "text" class = "form-control" id = "anoPublicacao" placeholder = "Ano de publicação" required>
+                                                <input name="anoPublicacao" type = "text" class = "form-control" id = "anoPublicacao" placeholder = "Ano de publicaï¿½ï¿½o" required>
                                             </div>
 
                                         </div>  
                                     </div>
-
 
                                     <div class="form-group">
                                         <div class="col-md-6">
@@ -66,6 +64,13 @@
                                             <div class="templatemo-input-icon-container">
                                                 <i class="fa fa-user"></i>
                                                 <input name="editora" type = "text"  class="form-control" id="editora" placeholder = "editora" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="autores" class="control-label">Autores</label>
+                                            <div class="templatemo-input-icon-container">
+                                                <i class="fa fa-user"></i>
+                                                <input name="autores" type = "text"  class="form-control" id="autores" placeholder = "autores" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

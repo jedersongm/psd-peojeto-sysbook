@@ -41,9 +41,9 @@ public class CadastrarLivros extends HttpServlet {
                 String isbn = itens.get(1).getString("UTF-8");
                 String titulo = itens.get(2).getString("UTF-8");
                 String editora = itens.get(4).getString("UTF-8");
-                String tema = itens.get(5).getString("UTF-8");
+                String tema = itens.get(6).getString("UTF-8");
                 Integer anopublicacao = Integer.parseInt(itens.get(3).getString("UTF-8"));
-                String autores = itens.get(6).getString("UTF-8");
+                String autores = itens.get(5).getString("UTF-8");
                 
                 String realPath = getServletContext().getRealPath("/imagensLivros");
                 String nomeImagem = titulo;
