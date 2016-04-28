@@ -19,6 +19,9 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap-social.css" rel="stylesheet" type="text/css">	
         <link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
+        <link href="css/star-rating.css" rel="stylesheet" type="text/css"/>
+        <link href="css/star-rating.min.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/theme-krajee-svg.css" rel="stylesheet" type="text/css"/>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css/style.css">
@@ -27,6 +30,7 @@
         <script src="js/respond.min.js"></script>
         <script src="js/jquery.min_1.js"></script>
         <script src="js/responsiveslides.min.js"></script>
+        <script src="js/star-rating.js" type="text/javascript"></script>
         <script src="js/javaScript.js"></script>
         <script  src="js/jquery.js"></script>
         <script  src="js/bootstrap.min.js"></script>
