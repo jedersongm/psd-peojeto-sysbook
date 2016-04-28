@@ -5,12 +5,23 @@
  */
 package br.edu.ifpb.ads.psd.projeto.servlets;
 
+import br.edu.ifpb.ads.psd.projeto.entidades.Livro;
+import br.edu.ifpb.ads.psd.projeto.entidades.Usuario;
+import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorDeLivros;
+import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorRecomendaLivro;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -18,31 +29,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ExibirLivrosRecomendados extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ExibirLivrosRecomendados</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ExibirLivrosRecomendados at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    GerenciadorRecomendaLivro rlGer = new GerenciadorRecomendaLivro();
+    GerenciadorDeLivros livroGer = new GerenciadorDeLivros();
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -56,7 +46,7 @@ public class ExibirLivrosRecomendados extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -70,7 +60,28 @@ public class ExibirLivrosRecomendados extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        Usuario user = (Usuario) session.getAttribute("usuario");
+        List<Livro> livros = new ArrayList<Livro>();
+        try {
+            List<String> isbns = rlGer.listarLivrosRecomendados(user.getEmail());
+            if (isbns != null) {
+                for (String bn : isbns) {
+                    Livro l = livroGer.pesquisarLivro(bn);
+                }
+            } else {
+                livros = null;
+            }
+
+            session.setAttribute("livros", livros);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/listarLivrosRecomendados.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**

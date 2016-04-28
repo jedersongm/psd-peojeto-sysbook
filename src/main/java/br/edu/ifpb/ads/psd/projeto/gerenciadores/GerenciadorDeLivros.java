@@ -37,10 +37,10 @@ public class GerenciadorDeLivros {
         livroDao.atualizar(livro);
     }
     
-    public Livro pesquisarLivro(String titulo) throws SQLException{
+    public Livro pesquisarLivro(String isbn) throws SQLException{
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
         LivroDaoIF livroDao = fabrica.criaLivroDao();
-        return livroDao.pesquisar(titulo);
+        return livroDao.pesquisar(isbn);
     }
     
     public List<Livro> listarLivros() throws SQLException{

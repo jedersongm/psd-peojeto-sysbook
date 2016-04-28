@@ -12,7 +12,7 @@ public interface LivroDaoIF {
     
     public void atualizar(Livro l)throws SQLException;
     
-    public Livro pesquisar(String titulo)throws SQLException;
+    public Livro pesquisar(String isbn)throws SQLException;
     
     public List<Livro> listar() throws SQLException;
     

@@ -84,11 +84,42 @@ public class LivroDao implements LivroDaoIF {
         }
     }
 
-    public Livro pesquisar(String titulo) throws SQLException {
+//    public Livro pesquisar(String titulo) throws SQLException {
+//        try {
+//            conexao.abrir();
+//            
+//            String SQL = "select * from Livro where titulo ilike '%"+ titulo +"%'";
+//            
+//            pstm = con.prepareStatement(SQL);
+//            
+//            ResultSet result = pstm.executeQuery();
+//            
+//            Livro livro = new Livro();
+//            
+//            while(result.next()){
+//                livro.setIsbn(result.getString("isbn"));
+//                livro.setTitulo(result.getString("titulo"));
+//                livro.setAnoPublicacao(result.getInt("anoPublicacao"));
+//                livro.setEditora(result.getString("editora"));
+//                livro.setFotoCapa(result.getString("fotoCapa"));
+//                livro.setTema(result.getString("tema"));
+//                livro.setAutores(result.getString("autores"));
+//            }
+//            return livro;
+//            
+//        } catch(Exception E) { 
+//            E.printStackTrace();
+//        } finally {
+//            conexao.liberar();
+//        }
+//        return null;
+//    }
+    
+    public Livro pesquisar(String isbn) throws SQLException {
         try {
             conexao.abrir();
             
-            String SQL = "select * from Livro where titulo ilike '%"+ titulo +"%'";
+            String SQL = "select * from Livro where isbn = '"+ isbn +"'";
             
             pstm = con.prepareStatement(SQL);
             
@@ -114,6 +145,7 @@ public class LivroDao implements LivroDaoIF {
         }
         return null;
     }
+    
     
     public List<Livro> listar() throws SQLException {
         try {
