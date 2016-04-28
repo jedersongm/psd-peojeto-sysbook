@@ -1,6 +1,6 @@
 package br.edu.ifpb.ads.psd.projeto.fabricas;
 
-import br.edu.ifpb.ads.psd.projeto.dao.ParticipaGrupoDAO;
+import br.edu.ifpb.ads.psd.projeto.dao.ParticipaGrupoDao;
 import br.edu.ifpb.ads.psd.projeto.interfaces.AmizadeDaoIF;
 import br.edu.ifpb.ads.psd.projeto.interfaces.AutoresDaoIF;
 import br.edu.ifpb.ads.psd.projeto.interfaces.ComentarioDaoIF;
@@ -33,5 +33,5 @@ public interface DaoFactoryIF {
     
     public UsuarioDaoIF criaUsuarioDao();
     
-    public ParticipaGrupoDAO criaParticipaGrupoDAO();
+    public ParticipaGrupoDao criaParticipaGrupoDAO();
 }

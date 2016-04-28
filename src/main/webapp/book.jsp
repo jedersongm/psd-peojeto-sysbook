@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <form action="#" method="post" role="form">
                         <c:forEach items="${amigos}" var="user">
-                            <label class="checkbox-inline">
+                            <label class="checkbox">
                                 <input type="checkbox" value="${user.id}">${user.apelido}
                             </label>
                         </c:forEach>

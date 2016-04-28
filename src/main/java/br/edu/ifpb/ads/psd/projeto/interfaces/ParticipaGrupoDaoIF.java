@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author dijalma
  */
-public interface InterfaceParticipaGrupoDAO{
+public interface ParticipaGrupoDaoIF{
     
     
     public boolean adicionaRelacaoAdmin(String emailUsuario, int idGrupo)throws SQLException ;

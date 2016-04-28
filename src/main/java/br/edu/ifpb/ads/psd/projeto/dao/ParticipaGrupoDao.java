@@ -7,7 +7,6 @@ package br.edu.ifpb.ads.psd.projeto.dao;
 
 import br.edu.ifpb.ads.psd.projeto.conexao.ClasseConexao;
 import br.edu.ifpb.ads.psd.projeto.conexao.ConnectionFactory;
-import br.edu.ifpb.ads.psd.projeto.interfaces.InterfaceParticipaGrupoDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,22 +14,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import br.edu.ifpb.ads.psd.projeto.interfaces.ParticipaGrupoDaoIF;
 
 /**
  *
  * @author dijalma
  */
-public class ParticipaGrupoDAO implements InterfaceParticipaGrupoDAO{
+public class ParticipaGrupoDao implements ParticipaGrupoDaoIF{
 
     ConnectionFactory factory = new ConnectionFactory();
     ClasseConexao conexao = new ClasseConexao();
     Connection con;
     PreparedStatement pstm;
     
-    public ParticipaGrupoDAO() {
+    public ParticipaGrupoDao() {
         try {
             con = factory.getConnection();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     @Override

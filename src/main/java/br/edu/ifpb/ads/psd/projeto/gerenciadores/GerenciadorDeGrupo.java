@@ -1,15 +1,15 @@
 package br.edu.ifpb.ads.psd.projeto.gerenciadores;
 
-import br.edu.ifpb.ads.psd.projeto.dao.ParticipaGrupoDAO;
+import br.edu.ifpb.ads.psd.projeto.dao.ParticipaGrupoDao;
 import br.edu.ifpb.ads.psd.projeto.entidades.Grupo;
 import br.edu.ifpb.ads.psd.projeto.entidades.Usuario;
 import br.edu.ifpb.ads.psd.projeto.fabricas.DaoFactory;
 import br.edu.ifpb.ads.psd.projeto.fabricas.DaoFactoryIF;
 import br.edu.ifpb.ads.psd.projeto.interfaces.GrupoDaoIF;
-import br.edu.ifpb.ads.psd.projeto.interfaces.InterfaceParticipaGrupoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import br.edu.ifpb.ads.psd.projeto.interfaces.ParticipaGrupoDaoIF;
 
 public class GerenciadorDeGrupo {
     
@@ -26,13 +26,13 @@ public class GerenciadorDeGrupo {
     
     public boolean adicionaRelacao(String emailUsuario, int idGrupo) throws SQLException{
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
-        ParticipaGrupoDAO gruDao = fabrica.criaParticipaGrupoDAO();
+        ParticipaGrupoDao gruDao = fabrica.criaParticipaGrupoDAO();
         return gruDao.adicionaRelacao(emailUsuario, idGrupo);
     }
     
     public boolean adicionaRelacaoAdmin(String emailUsuario, int idGrupo) throws SQLException{
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
-        ParticipaGrupoDAO gruDao = fabrica.criaParticipaGrupoDAO();
+        ParticipaGrupoDao gruDao = fabrica.criaParticipaGrupoDAO();
         return gruDao.adicionaRelacaoAdmin(emailUsuario, idGrupo);
     }
     
@@ -70,7 +70,7 @@ public class GerenciadorDeGrupo {
         List<Grupo> grupos = new ArrayList<>();
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
         GrupoDaoIF gruDao = fabrica.criaGrupoDao();
-        InterfaceParticipaGrupoDAO participaGrupo = fabrica.criaParticipaGrupoDAO();
+        ParticipaGrupoDaoIF participaGrupo = fabrica.criaParticipaGrupoDAO();
         for (Integer id : participaGrupo.retornaGrupos(emailUsuario)) {
             grupos.add((Grupo) gruDao.pesquisarGrupos(emailUsuario));
         }

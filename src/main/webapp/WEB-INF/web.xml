@@ -34,6 +34,10 @@
         <servlet-name>ListarAmigos</servlet-name>
         <servlet-class>br.edu.ifpb.ads.psd.projeto.servlets.ListarAmigos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecomendarLivro</servlet-name>
+        <servlet-class>br.edu.ifpb.ads.psd.projeto.servlets.RecomendarLivro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -157,6 +161,10 @@
     <servlet-mapping>
         <servlet-name>ListarAmigos</servlet-name>
         <url-pattern>/ListarAmigos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecomendarLivro</servlet-name>
+        <url-pattern>/RecomendarLivro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>20</session-timeout>

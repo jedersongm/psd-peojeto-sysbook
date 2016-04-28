@@ -87,4 +87,16 @@ create table comentario(
   FOREIGN KEY (emailUsuario) REFERENCES usuario (email) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+create table recomendalivro(
+    emailUsuario varchar(30) not null,
+    emailDestino varchar(30) not null,
+    isbnLivro varchar(60) not NULL,
+    visualized boolean not null,
+    PRIMARY KEY(emailUsuario, emailDestino, isbnLivro),
+    FOREIGN KEY (emailUsuario) REFERENCES usuario (email) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (emailDestino) REFERENCES usuario (email) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (isbnLivro) REFERENCES livro (isbn) ON DELETE RESTRICT ON UPDATE CASCADE
+    
+);
+
 INSERT INTO usuario(email, nome, apelido, senha, cidade, estado, foto,dataNascimento, tipo) VALUES('admin@sysbook.com','Administrador','admin','123','Cajazeiras','PB','imagensPerfil/Admin.jpg','0002-11-30',true);

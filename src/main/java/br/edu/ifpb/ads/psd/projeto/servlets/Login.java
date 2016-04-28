@@ -6,11 +6,15 @@ package br.edu.ifpb.ads.psd.projeto.servlets;
  * and open the template in the editor.
  */
 
+import br.edu.ifpb.ads.psd.projeto.entidades.Amizade;
 import br.edu.ifpb.ads.psd.projeto.entidades.Usuario;
+import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorDeAmizade;
 import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorDeUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -27,6 +31,7 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet {
 
     private GerenciadorDeUsuario usuarioGer = new GerenciadorDeUsuario();
+    private GerenciadorDeAmizade amizadeGer = new GerenciadorDeAmizade();
 
     public void doGet(HttpServletRequest request,
             HttpServletResponse response)
@@ -52,6 +57,7 @@ public class Login extends HttpServlet {
            }else if((usuario.getEmail().equals(email)) && (usuario.getSenha().equals(senha))) {
 
             request.getSession().setAttribute("usuario",usuario);
+            request.getSession().setAttribute("amigos", amigos(usuario));
             dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
             
@@ -65,6 +71,18 @@ public class Login extends HttpServlet {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public List<Usuario> amigos(Usuario u) throws SQLException{
+        List<Amizade> a = amizadeGer.listarAmizade(u.getEmail());
+        List<Usuario> amigos = new ArrayList<>();
+        if(a != null){
+            for (Amizade amizade : a) {
+                Usuario user = usuarioGer.getUsuario(amizade.getEmailAmigo());
+                amigos.add(user);
+            }
+            return amigos.isEmpty() ? null:amigos;
+        } else return null;
     }
 
     

@@ -9,7 +9,7 @@ import br.edu.ifpb.ads.psd.projeto.dao.FotoDAO;
 import br.edu.ifpb.ads.psd.projeto.dao.FotoLivroDao;
 import br.edu.ifpb.ads.psd.projeto.dao.GrupoDao;
 import br.edu.ifpb.ads.psd.projeto.dao.LivroDao;
-import br.edu.ifpb.ads.psd.projeto.dao.ParticipaGrupoDAO;
+import br.edu.ifpb.ads.psd.projeto.dao.ParticipaGrupoDao;
 import br.edu.ifpb.ads.psd.projeto.dao.TopicoDao;
 import br.edu.ifpb.ads.psd.projeto.dao.UsuarioDao;
 import br.edu.ifpb.ads.psd.projeto.interfaces.AmizadeDaoIF;
@@ -63,8 +63,8 @@ public class DaoFactoryBD implements DaoFactoryIF{
         return new UsuarioDao();
     }
     
-    public ParticipaGrupoDAO criaParticipaGrupoDAO() {
-        return new ParticipaGrupoDAO();
+    public ParticipaGrupoDao criaParticipaGrupoDAO() {
+        return new ParticipaGrupoDao();
     }
 
 }
