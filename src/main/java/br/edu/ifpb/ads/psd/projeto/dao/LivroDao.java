@@ -151,7 +151,7 @@ public class LivroDao implements LivroDaoIF {
         try {
             conexao.abrir();
             
-            String SQL = "select titulo, fotoCapa from livro";
+            String SQL = "select * from livro";
             
             pstm = con.prepareStatement(SQL);
             
@@ -161,8 +161,13 @@ public class LivroDao implements LivroDaoIF {
             
             while(result.next()){
                 Livro livro = new Livro();
+                livro.setIsbn(result.getString("isbn"));
                 livro.setTitulo(result.getString("titulo"));
+                livro.setAnoPublicacao(result.getInt("anoPublicacao"));
+                livro.setEditora(result.getString("editora"));
                 livro.setFotoCapa(result.getString("fotoCapa"));
+                livro.setTema(result.getString("tema"));
+                livro.setAutores(result.getString("autores"));              
                 livros.add(livro);
             }
             return livros.isEmpty() ? null : livros;
@@ -188,8 +193,13 @@ public class LivroDao implements LivroDaoIF {
             
             while(result.next()){
                 Livro livro = new Livro();
+                livro.setIsbn(result.getString("isbn"));
                 livro.setTitulo(result.getString("titulo"));
+                livro.setAnoPublicacao(result.getInt("anoPublicacao"));
+                livro.setEditora(result.getString("editora"));
                 livro.setFotoCapa(result.getString("fotoCapa"));
+                livro.setTema(result.getString("tema"));
+                livro.setAutores(result.getString("autores"));
                 livros.add(livro);
             }
             return livros.isEmpty() ? null : livros;

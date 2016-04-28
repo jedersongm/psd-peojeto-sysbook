@@ -38,26 +38,23 @@ public class ControleVerGrupo extends HttpServlet{
             List<Grupo> grupos = grupoGer.pesquisarGrupos(emailUser);
             req.getSession().setAttribute("grupos", grupos);
             
-//            int idGrupo = Integer.parseInt(req.getParameter("idGrupo"));
-////            int idUsuario = ((Usuario) req.getSession().getAttribute("user")).getId();
-//            
-//            List<Topico> topicos = (List<Topico>) new GerenciadorDeTopico().getTopico(idGrupo);
-//            if (!topicos.isEmpty()){
-//                req.getSession().setAttribute("topicos", topicos);
-//            }
-//            
-//            List<Usuario> usuariosDoGrupo = new GerenciadorParticipaGrupo().retornaUsuariosDeUmGrupo(idGrupo);
-//            List<Livro> listaLivros = new GerenciadorDeLivros().listarLivros();
-//            List<String> nomeLivros = new ArrayList();
-//            for(int i=0;i<listaLivros.size();i++){
-//                nomeLivros.add(listaLivros.get(i).getTitulo());   
-//            }
-//            
-//            req.getSession().setAttribute("grupoSelecionado", g);
-//            req.setAttribute("nomeDosLivros", nomeLivros);
-//            req.getSession().setAttribute("usuariosDoGrupo", usuariosDoGrupo);
-//            req.getSession().setAttribute("participa", new GerenciadorParticipaGrupo().isParticipa(emailUser, idGrupo));
-            req.getRequestDispatcher("visualizaGrupos.jsp").forward(req, resp);
+            String nomeGrupo = req.getParameter("nome");
+            Grupo g = new GerenciadorDeGrupo().pesquisarGrupo(nomeGrupo);
+            int idGrupo = g.getId();
+
+            List<Usuario> usuariosDoGrupo = new GerenciadorParticipaGrupo().retornaUsuariosDeUmGrupo(idGrupo);
+            
+            List<Livro> listaLivros = new GerenciadorDeLivros().listarLivros();
+            List<String> nomeLivros = new ArrayList();
+            for(int i=0;i<listaLivros.size();i++){
+                nomeLivros.add(listaLivros.get(i).getTitulo());   
+            }
+            boolean p = new GerenciadorParticipaGrupo().isParticipa(emailUser, idGrupo);
+            req.getSession().setAttribute("grupo", g);
+            req.setAttribute("nomeDosLivros", nomeLivros);
+            req.getSession().setAttribute("usuariosDoGrupo", usuariosDoGrupo);
+            req.getSession().setAttribute("participa", p);
+            req.getRequestDispatcher("verGrupo.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(ControleVerGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }

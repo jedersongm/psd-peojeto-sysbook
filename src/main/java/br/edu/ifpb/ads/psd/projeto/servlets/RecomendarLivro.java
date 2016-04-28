@@ -5,8 +5,13 @@
  */
 package br.edu.ifpb.ads.psd.projeto.servlets;
 
+import br.edu.ifpb.ads.psd.projeto.entidades.Usuario;
+import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorRecomendaLivro;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author jederson
  */
 public class RecomendarLivro extends HttpServlet {
+    
+    private GerenciadorRecomendaLivro rlGer = new GerenciadorRecomendaLivro();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -45,6 +52,17 @@ public class RecomendarLivro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String[] usuarios =  request.getParameterValues("users");
+        String isbn = request.getParameter("isbn");
+        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        for (String emailDestino : usuarios) {
+            try {
+                rlGer.adicionarRelação(user.getEmail(), emailDestino, isbn);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        request.getRequestDispatcher("book.jsp").forward(request, response);
     }
 
     /**

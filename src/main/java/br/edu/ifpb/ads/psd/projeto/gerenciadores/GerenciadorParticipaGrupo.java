@@ -52,7 +52,7 @@ public class GerenciadorParticipaGrupo {
         DaoFactoryIF fabrica = DaoFactory.creatFactory();
         ParticipaGrupoDaoIF participaGrupo = fabrica.criaParticipaGrupoDAO();
         
-        for(Integer i: participaGrupo.retornaUsuariosDeUmGrupo(idGrupo)){
+        for(String i: participaGrupo.retornaUsuariosDeUmGrupo(idGrupo)){
             usuarios.add(new GerenciadorDeUsuario().getUsuario(i));
         }
         

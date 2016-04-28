@@ -37,7 +37,7 @@ public class AbrirLivro extends HttpServlet {
     
         request.setCharacterEncoding("UTF-8");
 
-   String livro = request.getParameter("titulo");
+        String livro = request.getParameter("isbn");
         RequestDispatcher dispatcher = request.getRequestDispatcher("book.jsp");
         try{
             Livro l = livroGer.pesquisarLivro(livro);

@@ -23,5 +23,5 @@ public interface ParticipaGrupoDaoIF{
     
     public boolean isParticipa(String emailUsuario, int idGrupo)throws SQLException ;
     
-    public List<Integer> retornaUsuariosDeUmGrupo(int idGrupo)throws SQLException ;
+    public List<String> retornaUsuariosDeUmGrupo(int idGrupo)throws SQLException ;
 }

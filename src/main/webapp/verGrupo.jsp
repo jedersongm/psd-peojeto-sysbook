@@ -4,9 +4,9 @@
     <body  id="fundo" class="textoPreto white-background">
         
         <div class="margin-top-body">
-            <div class="container nav-justified">
+            <div class="container nav-justified">   
                 <a href="logado.jsp"><h1 class="text-center textoPreto">Social Movies</h1></a>
-                <br>    
+                <br>
                 <ul class="nav nav-tabs navbar-static-top" id="menuNav">
                     <li class="active"><a data-toggle="tab" href="#topicos">Tópicos</a></li>
                     <li><a data-toggle="tab" href="#participantes">Usuários</a></li>
@@ -16,7 +16,7 @@
                         <c:if test="${participa == false}">
                         <li><a data-toggle="tab" href="#participar">Participar</a></li>
                         </c:if>
-                        <c:if test="${grupoSelecionado.idUsuario == user.id}">
+                        <c:if test="${grupo.emailUsuario == usuario.email}">
                         <li><a data-toggle="tab" href="#remover">Remover</a></li>
                         </c:if>
                     <li class="flutuarADireita"><a data-toggle="tab" href="#buscar">Buscar</a></li>
@@ -25,8 +25,8 @@
                 <div class="tab-content">
                     <div id="topicos" class="tab-pane fade text-center in active">
                         <section class="text-center margin-top table-responsive modal-header modal-dialog">
-                            <h2><a>${grupoSelecionado.nomeDoGrupo}</a></h2>
-                            <p>${grupoSelecionado.descricao}</p>
+                            <h2><a>${grupo.nome}</a></h2>
+                            <p>${grupo.descricao}</p>
                             <br>
                         </section>
                         <c:if test="${topicos != null}"><h3>Tópicos</h3></c:if>
@@ -52,11 +52,11 @@
                             <div class="row">
                                 <c:forEach items="${usuariosDoGrupo}" var="us">
                                     <div class="col-sm-2">
-                                        <img src="${us.foto}" alt="${us.apelido}" title="${us.apelido}" class="img-solicitacao img-circle">
-                                        <c:if test="${us.id != user.id}"> 
-                                            <h4 class="text-capitalize"><a href="ControlePerfilVisitante?idDoUsuario=${us.id}">${us.apelido}</a></h4>
+                                        <img src="${usuario.foto}" alt="${usuario.apelido}" title="${usuario.apelido}" class="img-solicitacao img-circle">
+                                        <c:if test="${usuario.id != user.id}"> 
+                                            <h4 class="text-capitalize"><a href="ControlePerfilVisitante?idDoUsuario=${usuario.id}">${usuario.apelido}</a></h4>
                                             </c:if>
-                                            <c:if test="${us.id == user.id}"> 
+                                            <c:if test="${usuario.id == user.id}"> 
                                             <h4 class="text-capitalize"><a href="editarPerfil.jsp">Você</a></h4>
                                         </c:if>
                                     </div>
@@ -71,10 +71,10 @@
                             <br>
                             <div class="form-group">
                                 <form action="ControleCriarTopico" method="post">
-                                    <input class="botaoMedio margin-top" name="nomeDoTopico" type="text" placeholder="Nome do tópico">
+                                    <input class="botaoMedio margin-top" name="nomeDoTopico" type="text" placeholder="Nome do tÃ³pico">
                                     <input class="botaoMedio margin-top" name="nomeDoFilme" type="text" placeholder="Nome do Filme" list="listaDeFilmes">
                                     <datalist id="listaDeFilmes">
-                                        <c:forEach items="${nomeDosFilmes}" var="a">
+                                        <c:forEach items="${nomeDosLivros}" var="a">
                                             <option value="${a}"></option>
                                         </c:forEach>
                                     </datalist>

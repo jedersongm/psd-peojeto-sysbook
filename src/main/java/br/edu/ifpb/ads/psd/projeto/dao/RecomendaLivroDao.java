@@ -43,10 +43,10 @@ public class RecomendaLivroDao implements RecomendaLivroDaoIF{
             String sql = "INSERT INTO recomendalivro(emailUsuario, emailDestino, isbnLivro, visualized) VALUES(?,?,?,?)";
             
             pstm = con.prepareStatement(sql);
-            pstm.setString(0, emailUsuario);
-            pstm.setString(1, emailDestino);
-            pstm.setString(2, isbn);
-            pstm.setBoolean(3, false);
+            pstm.setString(1, emailUsuario);
+            pstm.setString(2, emailDestino);
+            pstm.setString(3, isbn);
+            pstm.setBoolean(4, false);
             return pstm.executeUpdate() > 0;
         }catch(SQLException ex){
             ex.printStackTrace();

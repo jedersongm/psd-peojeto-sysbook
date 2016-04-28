@@ -42,6 +42,10 @@
         <servlet-name>ExibirLivrosRecomendados</servlet-name>
         <servlet-class>br.edu.ifpb.ads.psd.projeto.servlets.ExibirLivrosRecomendados</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AbrirLivroRecomendado</servlet-name>
+        <servlet-class>br.edu.ifpb.ads.psd.projeto.servlets.AbrirLivroRecomendado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -173,6 +177,10 @@
     <servlet-mapping>
         <servlet-name>ExibirLivrosRecomendados</servlet-name>
         <url-pattern>/ExibirLivrosRecomendados</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AbrirLivroRecomendado</servlet-name>
+        <url-pattern>/AbrirLivroRecomendado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>20</session-timeout>

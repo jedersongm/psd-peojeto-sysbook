@@ -11,28 +11,30 @@ import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorDeLivros;
 import br.edu.ifpb.ads.psd.projeto.gerenciadores.GerenciadorRecomendaLivro;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author jederson
  */
-public class ExibirLivrosRecomendados extends HttpServlet {
-
-    GerenciadorRecomendaLivro rlGer = new GerenciadorRecomendaLivro();
-    GerenciadorDeLivros livroGer = new GerenciadorDeLivros();
-
+public class AbrirLivroRecomendado extends HttpServlet {
     
+    GerenciadorDeLivros livroGer = new GerenciadorDeLivros();
+    GerenciadorRecomendaLivro rlGer = new GerenciadorRecomendaLivro();
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -61,26 +63,15 @@ public class ExibirLivrosRecomendados extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        Usuario user = (Usuario) session.getAttribute("usuario");
-        List<Livro> livros = new ArrayList<Livro>();
-        try {
-            List<String> isbns = rlGer.listarLivrosRecomendados(user.getEmail());
-            if (isbns != null) {
-                for (String bn : isbns) {
-                    Livro l = livroGer.pesquisarLivro(bn);
-                    livros.add(l);
-                }
-            } else {
-                livros = null;
-            }
-
-            session.setAttribute("livrosRecomendados", livros);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/listarLivrosRecomendados.jsp");
+        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        String livro = request.getParameter("isbn");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bookRecomendado.jsp");
+        try{
+            Livro l = livroGer.pesquisarLivro(livro);
+            request.setAttribute("livroRecomendado",l);
+            rlGer.responder(user.getEmail(), l.getIsbn());
             dispatcher.forward(request, response);
-
-        } catch (SQLException ex) {
+        }catch(Exception ex){
             ex.printStackTrace();
         }
     }

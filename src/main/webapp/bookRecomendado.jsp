@@ -9,21 +9,21 @@
 
 <body class = "tab-content">
     <div class="container-fluid" >
-        <div class="titulo">${livro.titulo}</div>
-        <img src="${livro.fotoCapa}" alt="${livro.titulo}" class="img-circle3">
+        <div class="titulo">${livroRecomendado.titulo}</div>
+        <img src="${livroRecomendado.fotoCapa}" alt="${livroRecomendado.titulo}" class="img-circle3">
     </div>
 
     <div class="container">
         <div id="description">
             <h3>Descrição</h3>
             <fieldset>                
-                <strong>Título: ${livro.titulo}</strong><br>
-                ISBN: ${livro.isbn}<br>
-                Autores:${livro.autores}<br>        
+                <strong>Título: ${livroRecomendado.titulo}</strong><br>
+                ISBN: ${livroRecomendado.isbn}<br>
+                Autores:${livroRecomendado.autores}<br>        
 
-                Tema: ${livro.tema}<br>
+                Tema: ${livroRecomendado.tema}<br>
 
-                Editora: ${livro.editora}<br>
+                Editora: ${livroRecomendado.editora}<br>
             </fieldset>          
 
         </div>

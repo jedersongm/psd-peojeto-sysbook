@@ -7,6 +7,7 @@ package br.edu.ifpb.ads.psd.projeto.dao;
 
 import br.edu.ifpb.ads.psd.projeto.conexao.ClasseConexao;
 import br.edu.ifpb.ads.psd.projeto.conexao.ConnectionFactory;
+import br.edu.ifpb.ads.psd.projeto.interfaces.ParticipaGrupoDaoIF;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,11 +15,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import br.edu.ifpb.ads.psd.projeto.interfaces.ParticipaGrupoDaoIF;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author dijalma
+ * @author reginaldo
  */
 public class ParticipaGrupoDao implements ParticipaGrupoDaoIF{
 
@@ -31,25 +32,24 @@ public class ParticipaGrupoDao implements ParticipaGrupoDaoIF{
         try {
             con = factory.getConnection();
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     @Override
     public boolean adicionaRelacao(String emailUsuario, int idGrupo) throws SQLException {
         boolean result = false;
         
-        String sql = "insert into participagrupo (emailusuario, idgrupo) values (?, ?)";
+        String sql = "insert into participagrupo (emailusuario, idgrupo, useradmin) values (?, ?, ?)";
         
         try {
             conexao.abrir();
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, emailUsuario);
             stmt.setInt(2, idGrupo);
-            
+            stmt.setBoolean(3, false);
             stmt.executeUpdate();
             result = true;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex);
         } finally {
             conexao.liberar();
         }
@@ -111,47 +111,51 @@ public class ParticipaGrupoDao implements ParticipaGrupoDaoIF{
         boolean result = false;
         
         
-        try{
+        
             conexao.abrir();
-            String sql = "select * from participaGrupo where emailusuario = "+emailUsuario+" and idGrupo = "+idGrupo+"";
-            Statement stat = con.createStatement();
-            ResultSet rs = stat.executeQuery(sql);
+            String sql = "select * from participaGrupo where emailusuario = ? and idGrupo = ?";
+        try {
+            conexao.abrir();
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1, emailUsuario);
+            pstm.setInt(2, idGrupo);
+            ResultSet rs = pstm.executeQuery();
             
-            if (rs.next()){
+            while(rs.next()){
                 result = true;
             }
-        }catch (SQLException ex){
-            ex.printStackTrace();
-        }finally{
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        } finally {
             conexao.liberar();
         }
-        
         
         return result;
     }
     
     @Override
-    public List<Integer> retornaUsuariosDeUmGrupo(int idGrupo) throws SQLException{
-        List<Integer> idDeUsuarios = new ArrayList<>();
+    public List<String> retornaUsuariosDeUmGrupo(int idGrupo) throws SQLException{
+        List<String> emailDeUsuarios = new ArrayList<>();
         
        
         try{
             conexao.abrir();
-            String sql = "select emailusuario from participaGrupo where idGrupo = "+idGrupo+"";
-            Statement stat = con.createStatement();
-            ResultSet rs = stat.executeQuery(sql);
-            
+            String sql = "select emailusuario from participagrupo where idGrupo = ?";
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, idGrupo);
+            ResultSet rs = pstm.executeQuery();
             while (rs.next()){
-                idDeUsuarios.add(rs.getInt("idUsuario"));
+                emailDeUsuarios.add(rs.getString("emailusuario"));
             }
             
         }catch (SQLException ex){
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex);
         }finally{
             conexao.liberar();
         }
         
         
-        return idDeUsuarios;
+        return emailDeUsuarios;
     }
 }
